@@ -56,21 +56,16 @@ namespace Prova.Controllers
         {
             try
             {
-                var body = await this.GetBody<Data.ContaPagamento>();
-
-                 if (body == null)
-                    throw new Exception("Parâmetros incorretos!");
-                else { }
-
-                Data.ContaPagamento contaPagamento = new Data.ContaPagamento();
-                contaPagamento.idContaPagamento = body.idContaPagamento;
-
-                int idContaPagamento = this.GetQueryString<int>("idContaPagamento");
                 
 
-                List<Utils.NameValue> _params = new List<Utils.NameValue>();
+                Data.ContaPagamento contaPagamento = new Data.ContaPagamento
+                {
+                 idContaPagamento = this.GetQueryString<int>("idContaPagamento")
+                };
 
-                contaPagamento = (Data.ContaPagamento)sr.consultar(contaPagamento);
+                contaPagamento = (Data.ContaPagamento)Utils.Utils.sr(0).consultar(contaPagamento);
+                
+                List<Utils.NameValue> _params = new List<Utils.NameValue>();
 
                 return UtilsGestao.UtilsApi.Retorno(contaPagamento);
             }
