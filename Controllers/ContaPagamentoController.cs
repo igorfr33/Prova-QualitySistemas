@@ -51,8 +51,8 @@ namespace Prova.Controllers
             }
         }
 
-        [Route("/GetConta"), HttpGet("{idContaPagamento}")]
-        public async Task <ActionResult<dynamic>> GetConta(int idContaPagamento)
+        [Route("/api/contaPagamento?idContaPagamento"), HttpGet]
+        public async Task <ActionResult<dynamic>> GetConta()
         {
             try
             {
@@ -64,6 +64,9 @@ namespace Prova.Controllers
 
                 Data.ContaPagamento contaPagamento = new Data.ContaPagamento();
                 contaPagamento.idContaPagamento = body.idContaPagamento;
+
+                int idContaPagamento = this.GetQueryString<int>("idContaPagamento");
+                
 
                 List<Utils.NameValue> _params = new List<Utils.NameValue>();
 
